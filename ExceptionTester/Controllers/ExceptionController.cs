@@ -9,8 +9,8 @@ namespace ExceptionTester.Controllers
     [Route("[controller]")]
     public class ExceptionController : Controller
     {
-        private ILogger _logger;
-        public ExceptionController(ILogger logger) 
+        private readonly ILogger<ExceptionController> _logger;
+        public ExceptionController(ILogger<ExceptionController> logger) 
         {
             _logger = logger;
         }
@@ -52,6 +52,7 @@ namespace ExceptionTester.Controllers
             return View();
         }
 
+        //simpley threw the exception which was caught by appD
         [HttpGet]
         [Route("DivideByZero")]
         public IActionResult DivideByZero()
