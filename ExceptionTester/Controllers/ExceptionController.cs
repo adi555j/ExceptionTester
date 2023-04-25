@@ -89,7 +89,25 @@ namespace ExceptionTester.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.ToString());
+                
+            }
+
+            return View();
+        }
+
+
+        [HttpGet]
+        [Route("DivideByZeroTryCatchThrowException")]
+        public IActionResult DivideByZeroTryCatchThrowException()
+        {
+            try
+            {
+                var y = 0;
+                var x = 5 / y;
+            }
+            catch (Exception ex)
+            {
+                throw new DivideByZeroException();
             }
 
             return View();
