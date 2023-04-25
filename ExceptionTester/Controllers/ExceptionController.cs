@@ -52,7 +52,7 @@ namespace ExceptionTester.Controllers
             return View();
         }
 
-        //simpley threw the exception which was caught by appD
+        //simply threw the exception which was caught by appD
         [HttpGet]
         [Route("DivideByZero")]
         public IActionResult DivideByZero()
@@ -62,6 +62,7 @@ namespace ExceptionTester.Controllers
             return View();
         }
 
+        //this one is also caught by appD
         [HttpGet]
         [Route("DivideByZeroTryCatchWithLogger")]
         public IActionResult DivideByZeroTryCatchWithLogger()
@@ -79,6 +80,7 @@ namespace ExceptionTester.Controllers
             return View();
         }
 
+        //the exception was not caught!
         [HttpGet]
         [Route("DivideByZeroTryCatch")]
         public IActionResult DivideByZeroTryCatch()
@@ -96,7 +98,7 @@ namespace ExceptionTester.Controllers
             return View();
         }
 
-
+        //thrown exception is caught by appD
         [HttpGet]
         [Route("DivideByZeroTryCatchThrowException")]
         public IActionResult DivideByZeroTryCatchThrowException()
