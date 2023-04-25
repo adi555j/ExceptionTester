@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System.ComponentModel;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ExceptionTester.Controllers
 {
@@ -8,6 +9,11 @@ namespace ExceptionTester.Controllers
     [Route("[controller]")]
     public class ExceptionController : Controller
     {
+        private ILogger _logger;
+        public ExceptionController(ILogger logger) 
+        {
+            _logger = logger;
+        }
         [HttpGet]
         [Route("NotImplementedException")]
         public IActionResult Index()
@@ -52,6 +58,40 @@ namespace ExceptionTester.Controllers
         {
             var y = 0;
             var x = 5 / y;
+            return View();
+        }
+
+        [HttpGet]
+        [Route("DivideByZeroTryCatchWithLogger")]
+        public IActionResult DivideByZeroTryCatchWithLogger()
+        {
+            try
+            {
+                var y = 0;
+                var x = 5 / y;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        [Route("DivideByZeroTryCatch")]
+        public IActionResult DivideByZeroTryCatch()
+        {
+            try
+            {
+                var y = 0;
+                var x = 5 / y;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+            }
+
             return View();
         }
     }
